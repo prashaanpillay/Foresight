@@ -15,7 +15,7 @@ class RetrieveDatasetCommand(Command):
 
     def execute(self):
         logger = self.injector.get_instance(Logger)
-        dataset_model = self.injector.as_singleton(DatasetModel)
+        dataset_model = self.injector.get_instance(DatasetModel)
         assetLoader = self.injector.get_instance(AssetLoader)
         acquisition_config = JsonParser.decode(
             assetLoader.get_config('acquisition.json'))
@@ -30,8 +30,8 @@ class RetrieveDatasetCommand(Command):
         validation_directory = os.path.abspath(
             build["validation_set_output_directory"])
 
-        dataset_model.training_directory = training_directory
-        dataset_model.validation_directory = validation_directory
+        dataset_model.set_training_directory(training_directory)
+        dataset_model.set_validation_directory(validation_directory)
 
         if not (os.path.exists(training_directory) and os.path.exists(validation_directory)):
             url_name = wget.download(dataset_url, raw_directory)
