@@ -1,0 +1,7 @@
+{
+  "settings": {
+    "training_device_type": "cpu"
+  },
+  "model": {},
+  "model_fitting": {}
+}

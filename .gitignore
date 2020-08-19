@@ -12,6 +12,11 @@ build/
 develop-eggs/
 dist/
 downloads/
+assets/raw_set/
+assets/training_set/
+assets/validation_set/
+.vscode/
+.idea/
 eggs/
 .eggs/
 lib/
