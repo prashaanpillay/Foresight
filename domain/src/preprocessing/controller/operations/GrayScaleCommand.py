@@ -1,9 +1,16 @@
-from engine.src.structure.command.Command import Command
-from ...services.GrayscaleService import GrayscaleService
+
+from .PreprocessingCommand import PreprocessingCommand
+from skimage import io
+from skimage.color import rgb2gray
+from skimage import img_as_ubyte
 
 
-class GrayscaleCommand(Command):
+class GrayscaleCommand(PreprocessingCommand):
 
-    def execute(self):
-        gray_scale_service = self.injector.get_instance(GrayscaleService)
-        gray_scale_service.convert()
+    def __init__(self):
+        super().__init__()
+
+    def execute(self, imagePath):        
+        super().execute(imagePath)
+        grayscale = rgb2gray(self.image)
+        io.imsave(imagePath, img_as_ubyte(grayscale))

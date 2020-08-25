@@ -34,6 +34,7 @@ class RetrieveDatasetCommand(Command):
         dataset_model.set_validation_directory(validation_directory)
 
         if not (os.path.exists(training_directory) and os.path.exists(validation_directory)):
+            logger.log("Downloading dataset")
             url_name = wget.download(dataset_url, raw_directory)
             with zipfile.ZipFile(url_name, 'r') as zip_ref:
                 zip_ref.extractall(raw_directory)

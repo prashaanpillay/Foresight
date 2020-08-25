@@ -8,16 +8,13 @@ from .acquisition.AcquisitionCommand import AcquisitionCommand
 class OnStartupCommand(Command):
 
     def execute(self):
-        system_startup = StartupCommand()
-        self.command_map.execute(system_startup)
+        self.command_map.execute(StartupCommand)
 
         logger = self.injector.get_instance(Logger)
         logger.progress("Foresight Started", heading=True)
 
-        acquisitionCommand = AcquisitionCommand()
-        self.command_map.execute(acquisitionCommand)
+        self.command_map.execute(AcquisitionCommand)
 
-        preprocessingCommand = PreprocessingCommand()
-        self.command_map.execute(preprocessingCommand)
+        self.command_map.execute(PreprocessingCommand)
 
         logger.progress("Foresight Complete", heading=True)

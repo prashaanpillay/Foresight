@@ -1,6 +1,7 @@
 {
   "dataset": {
     "name": "fruits 360",
+    "format": "jpg",
     "download_url": "https://github.com/Horea94/Fruit-Images-Dataset/archive/master.zip",
     "training_set_input_directory": "\\Fruit-Images-Dataset-master\\Training",
     "validation_set_input_directory": "\\Fruit-Images-Dataset-master\\Test"

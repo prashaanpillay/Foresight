@@ -1,13 +1,14 @@
 from engine.src.structure.command.Command import Command
 from .controller.services.MapServicesCommand import MapServicesCommand
 from .controller.operations.GrayScaleCommand import GrayscaleCommand
-
+from .services.PreprocessingService import PreprocessingService
+from .controller.operations.GrayScaleCommand import GrayscaleCommand
 
 class PreprocessingCommand(Command):
 
     def execute(self):
-        mapServicesCommand = MapServicesCommand()
-        self.command_map.execute(mapServicesCommand)
-
-        gray_scale_command = GrayscaleCommand()
-        self.command_map.execute(gray_scale_command)
+        self.command_map.execute(MapServicesCommand)
+        
+        service = self.injector.get_instance(PreprocessingService)
+        service.addPreprocessingCommand(GrayscaleCommand)
+        service.convert()

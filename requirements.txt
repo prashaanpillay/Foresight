@@ -7,3 +7,6 @@ glob2
 pep8
 flake8
 wget
+tqdm
+scikit-image
+opencv-python
