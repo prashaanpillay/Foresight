@@ -8,5 +8,8 @@ class DatasetModel(Model):
         self.validation_directory = ""
         self.training_generator = None
 
-    def update(self, config):
-        pass
+    def set_training_directory(self, directory):
+        self.training_directory = directory
+
+    def set_validation_directory(self, directory):
+        self.validation_directory = directory
