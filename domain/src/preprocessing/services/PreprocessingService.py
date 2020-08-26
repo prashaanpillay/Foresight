@@ -23,7 +23,7 @@ class PreprocessingService(Service):
         paths = Path(self.dataset_model.training_directory).rglob('*.jpg')
         for path in tqdm(paths):
            for command in self.preprocessing_command_queue:               
-               command.execute(imagePath=path)
+               command.execute(imagePath=str(path))
                
     
     @staticmethod

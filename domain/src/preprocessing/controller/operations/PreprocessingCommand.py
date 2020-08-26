@@ -1,5 +1,5 @@
 from engine.src.structure.command.Command import Command
-from skimage import io
+import cv2 as cv
 
 
 class PreprocessingCommand(Command):
@@ -8,5 +8,5 @@ class PreprocessingCommand(Command):
         self.image = None
 
     def execute(self, imagePath):
-        super().execute()
-        self.image = io.imread(imagePath)
+        super().execute()        
+        self.image = cv.imread(imagePath, cv.IMREAD_UNCHANGED)

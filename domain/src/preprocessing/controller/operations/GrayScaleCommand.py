@@ -1,8 +1,6 @@
 
 from .PreprocessingCommand import PreprocessingCommand
-from skimage import io
-from skimage.color import rgb2gray
-from skimage import img_as_ubyte
+import cv2 as cv
 
 
 class GrayscaleCommand(PreprocessingCommand):
@@ -12,5 +10,5 @@ class GrayscaleCommand(PreprocessingCommand):
 
     def execute(self, imagePath):        
         super().execute(imagePath)
-        grayscale = rgb2gray(self.image)
-        io.imsave(imagePath, img_as_ubyte(grayscale))
+        grayscale = cv.cvtColor(self.image,cv.COLOR_BGR2GRAY)
+        cv.imwrite(imagePath, grayscale)
