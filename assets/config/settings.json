@@ -1,0 +1,4 @@
+{
+    "shutdown_on_complete": "true",
+    "build_type": "debug"
+}

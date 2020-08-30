@@ -33,20 +33,24 @@ class RetrieveDatasetCommand(Command):
         dataset_model.set_training_directory(training_directory)
         dataset_model.set_validation_directory(validation_directory)
 
-        if not (os.path.exists(training_directory) and os.path.exists(validation_directory)):
-            logger.log("Downloading dataset")
+        if not (os.path.exists(raw_directory)):
+            logger.progress("Downloading dataset")
             url_name = wget.download(dataset_url, raw_directory)
             with zipfile.ZipFile(url_name, 'r') as zip_ref:
                 zip_ref.extractall(raw_directory)
+            logger.progress("Dataset download complete")
+
+        if not (os.path.exists(training_directory)):
+            logger.progress("Preparing dataset")
 
             shutil.copytree(
                 raw_directory+dataset["training_set_input_directory"], training_directory)
 
+        if not (os.path.exists(validation_directory)):
             shutil.copytree(
                 raw_directory+dataset["validation_set_input_directory"], validation_directory)
 
-            logger.progress("Dataset download complete")
-
+        logger.progress("Preparing dataset complete")
         logger.log("Training set written to: " +
                    str(dataset_model.training_directory))
         logger.log("Validation set written to: " +

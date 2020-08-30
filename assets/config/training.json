@@ -1,7 +1,41 @@
 {
   "settings": {
-    "training_device_type": "cpu"
+    "training_device_type": "cpu",
+    "epochs": 100,
+    "optimizer": "Adam",
+    "loss_function": "SparseCategoricalCrossentropy",
+    "metrics": "AUC",
+    "batch_size": 64
   },
-  "model": {},
-  "model_fitting": {}
+  "architecture": {
+    "name": "vgg",
+    "layers": [
+      {
+        "type": "Convolutional",
+        "shape": [
+          224,
+          224,
+          3
+        ],
+        "filters": 64,
+        "kernel_size": [
+          64,
+          64
+        ],
+        "padding": "same",
+        "activation": "relu"
+      },
+      {
+        "type": "MaxPool",
+        "pool_size": [
+          2,
+          2
+        ],
+        "strides": [
+          2,
+          2
+        ]
+      }
+    ]
+  }
 }
