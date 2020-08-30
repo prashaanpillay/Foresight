@@ -1,0 +1,7 @@
+{
+  "resize": {
+    "width": 250,
+    "height": 250
+  },
+  "preprocessing_operations": ["AveragingBlur", "Grayscale"]
+}

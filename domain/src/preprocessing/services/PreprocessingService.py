@@ -2,6 +2,7 @@ from engine.src.structure.service.Service import Service
 from engine.src.structure.injector.Injector import Injector
 from engine.src.model.DatasetModel import DatasetModel
 from engine.src.utility.logger.Logger import Logger
+from engine.src.structure.command.Command import Command
 from pathlib import Path
 import importlib
 from tqdm import tqdm
@@ -15,7 +16,7 @@ class PreprocessingService(Service):
         self.dataset_model = self.injector.get_instance(DatasetModel)
         self.preprocessing_command_queue = []
 
-    def addPreprocessingCommand(self, command_name):
+    def addPreprocessingCommand(self, command_name: str):
         self.logger.progress("Adding "+str(command_name)+" to preprocessing")
         self.preprocessing_command_queue.append(self.__resolve_class(command_name))
 
@@ -27,7 +28,7 @@ class PreprocessingService(Service):
                
     
     @staticmethod
-    def __resolve_class(class_name):
+    def __resolve_class(class_name: str) -> Command:
         split_on_class_name = str(class_name).split('.')[-1]
         string_class_name = split_on_class_name.split('\'')[0]
 

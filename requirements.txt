@@ -1,6 +1,7 @@
 numpy
 pandas
 matplotlib
+asyncio
 tensorflow
 tensorflow_datasets
 glob2

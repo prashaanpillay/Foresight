@@ -10,6 +10,9 @@ class CommandMap:
         self.commands[command.__class__] = self.__resolve_class(command)
         self.commands[command.__class__].execute()
 
+    def executeWithArgs(self, command, arguments):
+        pass
+
     def _destroy_command(self, command):
         self.commands[command.__class__] = None
         self.commands.pop(command.__class__)
