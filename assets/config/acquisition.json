@@ -11,13 +11,19 @@
     "validation_set_output_directory": "./assets/validation_set/"
   },
   "data_augementation": {
+    "width": 250,
+    "height": 250,
     "shuffle_files": true,
     "supervised": true,
     "rotation_range": 0.1,
     "width_shift_range": 0.1,
     "height_shift_range": 0.1,
-    "brightness_range": [0.5, 1.5],
+    "brightness_range": [
+      0.5,
+      1.5
+    ],
     "channel_shift_range": 0.05,
     "rescale": 0
-  }
+  },
+  "clearOnComplete": false
 }

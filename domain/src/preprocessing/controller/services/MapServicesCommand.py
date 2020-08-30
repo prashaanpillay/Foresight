@@ -5,5 +5,4 @@ from ...services.PreprocessingService import PreprocessingService
 class MapServicesCommand(Command):
 
     def execute(self):
-        service = PreprocessingService(self.injector)
-        self.injector.set_instance(PreprocessingService, service)
+        self.injector.as_singleton_with_injector(PreprocessingService)

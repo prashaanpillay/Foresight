@@ -15,6 +15,6 @@ class OnStartupCommand(Command):
 
         self.command_map.execute(AcquisitionCommand)
 
-        # self.command_map.execute(PreprocessingCommand)
+        self.command_map.execute(PreprocessingCommand)
 
         logger.progress("Foresight Complete", heading=True)
