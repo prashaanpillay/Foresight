@@ -3,6 +3,7 @@ from engine.src.utility.logger.Logger import Logger
 from engine.src.controller.command.StartupCommand import StartupCommand
 from .preprocessing.PreprocessingCommand import PreprocessingCommand
 from .acquisition.AcquisitionCommand import AcquisitionCommand
+from .training.TrainingCommand import TrainingCommand
 
 
 class OnStartupCommand(Command):
@@ -13,8 +14,10 @@ class OnStartupCommand(Command):
         logger = self.injector.get_instance(Logger)
         logger.progress("Foresight Started", heading=True)
 
-        self.command_map.execute(AcquisitionCommand)
+        # find a way to skip commands but still having the config hydrated into the models at this point
 
+        self.command_map.execute(AcquisitionCommand)
         self.command_map.execute(PreprocessingCommand)
+        self.command_map.execute(TrainingCommand)
 
         logger.progress("Foresight Complete", heading=True)

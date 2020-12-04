@@ -1,6 +1,7 @@
 {
   "settings": {
-    "training_device_type": "cpu"
+    "training_device_type": "cpu",
+    "seed": 0
   },
   "model": {},
   "model_fitting": {}

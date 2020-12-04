@@ -1,8 +1,8 @@
 from engine.src.structure.command.Command import Command
 from .controller.services.MapServicesCommand import MapServicesCommand
-from .controller.operations.GrayScaleCommand import GrayscaleCommand
+from .controller.operations.spatialCommands.GrayScaleCommand import GrayscaleCommand
 from .services.PreprocessingService import PreprocessingService
-from .controller.operations.GrayScaleCommand import GrayscaleCommand
+from .controller.operations.spatialCommands.GrayScaleCommand import GrayscaleCommand
 
 class PreprocessingCommand(Command):
 
