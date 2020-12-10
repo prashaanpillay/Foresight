@@ -3,6 +3,17 @@
     "training_device_type": "cpu",
     "seed": 0
   },
-  "model": {},
-  "model_fitting": {}
+  "logs":{
+    "save_location":""
+  },
+  "model": {
+    "color_mode":"grayscale",
+    "save_location":"",
+    "loss_function":"",
+    "optimizer":"",
+    "metrics":[]
+  },
+  "model_fitting": {
+    "epochs": 0
+  }
 }

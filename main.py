@@ -1,8 +1,6 @@
 from domain.src.OnStartupCommand import OnStartupCommand
 import tensorflow as tf
-
 import ray
-import os
 
 
 def run():
@@ -12,7 +10,6 @@ def run():
 
 
 if __name__ == '__main__':
-    ray.init(num_cpus=8,num_gpus=1)
-    print("Num GPUs Available: ", tf.config.list_physical_devices())
+    ray.init(num_cpus=8, num_gpus=1)
     with tf.device('/GPU:0'):
         run()

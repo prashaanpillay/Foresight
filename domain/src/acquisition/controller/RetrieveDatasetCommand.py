@@ -32,7 +32,7 @@ class RetrieveDatasetCommand(Command):
         dataset_model.set_training_directory(training_directory)
         dataset_model.set_validation_directory(validation_directory)
 
-        if not (os.path.exists(training_directory) and os.path.exists(validation_directory)) and (not os.path.exists(raw_directory)) :
+        if not (os.path.exists(training_directory) and os.path.exists(validation_directory)) and (not os.path.exists(raw_directory)):
             logger.log("Downloading dataset")
             url_name = wget.download(dataset_url, raw_directory)
             with zipfile.ZipFile(url_name, 'r') as zip_ref:
@@ -46,13 +46,14 @@ class RetrieveDatasetCommand(Command):
 
             logger.progress("Dataset download complete")
 
-        else: 
+        else:
             if os.path.exists(raw_directory):
                 if build["clear_out_folders_before_run"]:
-                    logger.warn("Clearing out previous training and validation directories")
+                    logger.warn(
+                        "Clearing out previous training and validation directories")
                     shutil.rmtree(training_directory)
                     shutil.rmtree(validation_directory)
-                    
+
                 shutil.copytree(
                     raw_directory+dataset["training_set_input_directory"], training_directory)
 

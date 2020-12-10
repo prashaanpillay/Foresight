@@ -3,6 +3,7 @@ from .imageTraining.loadImages.LoadTrainingImagesCommand import LoadTrainingImag
 from .imageTraining.loadImages.LoadValidationImagesCommand import LoadValidationImagesCommand
 from .StartFittingComand import StartFittingCommand
 
+
 class TrainingCommand(Command):
 
     def execute(self):

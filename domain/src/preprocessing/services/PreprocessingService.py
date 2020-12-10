@@ -5,7 +5,6 @@ from engine.src.utility.logger.Logger import Logger
 from pathlib import Path
 import importlib
 import ray
-from tqdm import tqdm
 
 
 class PreprocessingService(Service):
@@ -29,7 +28,8 @@ class PreprocessingService(Service):
     def convert(self):
         threads = 4
         # TODO: Add in validadation set to be preprocessed
-        paths = self.chunks((list(Path(self.dataset_model.training_directory).rglob('*.jpg')) + (list(Path(self.dataset_model.validation_directory).rglob('*.jpg)')))), threads)
+        paths = self.chunks((list(Path(self.dataset_model.training_directory).rglob(
+            '*.jpg')) + (list(Path(self.dataset_model.validation_directory).rglob('*.jpg)')))), threads)
         for path in paths:
             self.do_so_work(path)
 
@@ -45,6 +45,7 @@ class PreprocessingService(Service):
         string_class_name = split_on_class_name.split('\'')[0]
 
         module = importlib.import_module(class_name.__module__)
-        class_ = getattr(module, string_class_name[string_class_name.index('(')+1:string_class_name.index(')')])
+        class_ = getattr(module, string_class_name[string_class_name.index(
+            '(')+1:string_class_name.index(')')])
         instance = class_.remote()
         return instance
