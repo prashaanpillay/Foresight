@@ -1,14 +1,15 @@
 from engine.src.structure.model.Model import Model
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # model.fit(
 #         train_generator,
 #         steps_per_epoch=2000,
 #         epochs=50,
 #         validation_data=validation_generator,
-#         validation_steps=800)
+#         validation_steps=800)Z
 
 class DatasetModel(Model):
+
+##TODO: add another model for the actual learning model stuff
 
     def __init__(self):
         self.training_directory = ""
@@ -16,12 +17,6 @@ class DatasetModel(Model):
 
         self.training_dataset = None
         self.validation_dataset = None
-
-        self.training_generator = ImageDataGenerator(rescale=1./255,
-                                                    shear_range=0.2,
-                                                    zoom_range=0.2,
-                                                    horizontal_flip=True)
-        self.validation_generator = ImageDataGenerator(rescale=1./255)
 
     def set_training_directory(self, directory):
         self.training_directory = directory

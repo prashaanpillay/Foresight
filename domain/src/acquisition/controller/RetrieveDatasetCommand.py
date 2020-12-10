@@ -1,4 +1,3 @@
-import tensorflow_datasets as tfds
 from engine.src.structure.command.Command import Command
 from engine.src.utility.assetLoader.AssetLoader import AssetLoader
 from engine.src.utility.logger.Logger import Logger
@@ -53,8 +52,7 @@ class RetrieveDatasetCommand(Command):
                     logger.warn("Clearing out previous training and validation directories")
                     shutil.rmtree(training_directory)
                     shutil.rmtree(validation_directory)
-
-
+                    
                 shutil.copytree(
                     raw_directory+dataset["training_set_input_directory"], training_directory)
 
