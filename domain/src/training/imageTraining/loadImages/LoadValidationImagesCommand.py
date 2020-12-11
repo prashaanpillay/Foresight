@@ -18,7 +18,6 @@ class LoadValidationImagesCommand(Command):
         self.validation_dataset = image_dataset_from_directory(
             self.validation_dataset_directory,
             seed=1337,
-            color_mode="grayscale",
             image_size=(100, 100),
             batch_size=32,
         )

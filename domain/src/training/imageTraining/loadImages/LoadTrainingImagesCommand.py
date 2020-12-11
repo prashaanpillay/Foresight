@@ -17,7 +17,6 @@ class LoadTrainingImagesCommand(Command):
         self.training_dataset = image_dataset_from_directory(
             self.training_dataset_directory,
             seed=1337,
-            color_mode="grayscale",
             image_size=(100, 100),
             batch_size=32,
         )

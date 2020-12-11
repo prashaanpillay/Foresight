@@ -3,7 +3,7 @@
     "threads": 8,
     "seed": 0
   },
-  "sequencer": ["resize", "grayscale"],
+  "sequencer": ["resize"],
   "resize": {
     "width": 100,
     "height": 100

@@ -10,5 +10,5 @@ class PreprocessingCommand(Command):
         self.command_map.execute(MapServicesCommand)
 
         service = self.injector.get_instance(PreprocessingService)
-        service.addPreprocessingCommand(GrayscaleCommand)
-        service.convert()
+        # service.addPreprocessingCommand(GrayscaleCommand)
+        # service.convert()

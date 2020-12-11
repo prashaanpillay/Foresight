@@ -7,9 +7,10 @@ from engine.src.structure.model.Model import Model
 #         validation_data=validation_generator,
 #         validation_steps=800)Z
 
+
 class DatasetModel(Model):
 
-##TODO: add another model for the actual learning model stuff
+    # TODO: add another model for the actual learning model stuff
 
     def __init__(self):
         self.training_directory = ""

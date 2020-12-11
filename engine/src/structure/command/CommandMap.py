@@ -25,7 +25,7 @@ class CommandMap:
     def __resolve_class(class_name):
         split_on_class_name = str(class_name).split('.')[-1]
         string_class_name = split_on_class_name.split('\'')[0]
-
+        print(str(class_name))
         module = importlib.import_module(class_name.__module__)
         class_ = getattr(module, string_class_name)
         instance = class_()

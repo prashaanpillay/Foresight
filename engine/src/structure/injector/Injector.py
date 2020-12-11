@@ -29,6 +29,9 @@ class Injector:
     def get_instance(self, class_name):
         if self.binder.get(class_name) is not None:
             return self.binder[class_name]
+        else:
+            # TODO: somehow get the logger in here
+            print("Fatal Error: Injector does not have reference to: "+str(class_name))
 
     @staticmethod
     def __resolve_class(class_name):

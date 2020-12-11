@@ -1,19 +1,16 @@
 {
   "settings": {
-    "training_device_type": "cpu",
+    "training_device_type": "GPU",
     "seed": 0
   },
-  "logs":{
-    "save_location":""
+  "logs": {
+    "save_location": "assets\\logs\\"
   },
   "model": {
-    "color_mode":"grayscale",
-    "save_location":"",
-    "loss_function":"",
-    "optimizer":"",
-    "metrics":[]
-  },
-  "model_fitting": {
-    "epochs": 0
+    "save_location": "assets\\trained_models\\",
+    "loss_function": "SparseCategoricalCrossentropy",
+    "optimizer": "Adamax",
+    "metrics": ["accuracy"],
+    "epochs": 10
   }
 }

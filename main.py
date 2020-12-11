@@ -1,6 +1,7 @@
-from domain.src.OnStartupCommand import OnStartupCommand
-import tensorflow as tf
 import ray
+# TODO: Move this out of here
+import tensorflow as tf
+from domain.src.OnStartupCommand import OnStartupCommand
 
 
 def run():
@@ -11,5 +12,6 @@ def run():
 
 if __name__ == '__main__':
     ray.init(num_cpus=8, num_gpus=1)
+
     with tf.device('/GPU:0'):
         run()
