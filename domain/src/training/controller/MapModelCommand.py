@@ -1,8 +1,8 @@
 from engine.src.structure.command.Command import Command
-from ..models.TrainingModel import TrainingModel
+from ..models.TrainingConfigModel import TrainingConfigModel
 
 
 class MapModelCommand(Command):
 
     def execute(self):
-        self.injector.as_singleton(TrainingModel)
+        self.injector.as_singleton(TrainingConfigModel)

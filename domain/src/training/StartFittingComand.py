@@ -1,7 +1,7 @@
 from engine.src.utility.logger.Logger import Logger
 from engine.src.structure.command.Command import Command
 from engine.src.model.DatasetModel import DatasetModel
-from .models.TrainingModel import TrainingModel
+from .models.TrainingConfigModel import TrainingConfigModel
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, Flatten, Dense, MaxPooling2D, Dropout
 from tensorflow.keras.optimizers import Adam
@@ -16,7 +16,7 @@ class StartFittingCommand(Command):
         super().__init__()
         self.logger = self.injector.get_instance(Logger)
         self.dataset_model = self.injector.get_instance(DatasetModel)
-        self.training_model = self.injector.get_instance(TrainingModel)
+        self.training_model = self.injector.get_instance(TrainingConfigModel)
         self.model = None
 
     def execute(self):

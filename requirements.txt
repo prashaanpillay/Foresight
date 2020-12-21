@@ -1,7 +1,7 @@
 numpy==1.16
 pandas
 matplotlib
-tensorflow-gpu
+tensorflow
 glob2
 pep8
 flake8
@@ -9,3 +9,4 @@ wget
 tqdm
 opencv-python
 opencv-contrib-python
+wget
