@@ -3,6 +3,7 @@ from engine.src.utility.assetLoader.AssetLoader import AssetLoader
 from engine.src.utility.logger.Logger import Logger
 from engine.src.utility.parsers.JsonParser import JsonParser
 from engine.src.model.DatasetModel import DatasetModel
+from http.client import IncompleteRead
 
 import wget
 import os
@@ -32,9 +33,13 @@ class RetrieveDatasetCommand(Command):
         dataset_model.set_training_directory(training_directory)
         dataset_model.set_validation_directory(validation_directory)
 
-        if not (os.path.exists(training_directory) and os.path.exists(validation_directory)) and (not os.path.exists(raw_directory)):
+        if not (os.path.exists(training_directory) and os.path.exists(validation_directory)):
             logger.log("Downloading dataset")
-            url_name = wget.download(dataset_url, raw_directory)
+            try:
+                url_name = wget.download(dataset_url, raw_directory)
+            except IncompleteRead:
+                pass
+
             with zipfile.ZipFile(url_name, 'r') as zip_ref:
                 zip_ref.extractall(raw_directory)
 
