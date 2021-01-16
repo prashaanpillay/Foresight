@@ -37,37 +37,39 @@ class CandidateModel(Model):
 
     # write out the images and transforms
     def write_out(self, path):
-        directory_to_create = path+"\\"+str(self.survey_id)
-        if not os.path.exists(directory_to_create):
-            os.mkdir(directory_to_create)
+        directory_to_create = path + "\\" + str(self.survey_id)
 
-            os.mkdir(directory_to_create+"\\reference")
-            self.write_numpy_images(directory_to_create +
-                                    "\\reference", self.reference_image)
+        self.create_directories_if_absent(directory_to_create)
 
-            os.mkdir(directory_to_create+"\\misaligned")
-            self.write_numpy_images(directory_to_create +
-                                    "\\misaligned", self.misaligned_image)
+        self.write_numpy_images(directory_to_create + "\\reference", self.reference_image)
 
-            os.mkdir(directory_to_create+"\\aligned")
-            self.write_numpy_images(directory_to_create +
-                                    "\\aligned", self.aligned_image)
-        else:
-            pass
-            # iterate through the images and them out
+        self.write_numpy_images(directory_to_create + "\\misaligned", self.misaligned_image)
 
-    def write_numpy_images(self, path, array):
-        if os.path.exists(array):
-            np_array = np.load(array)
+        self.write_numpy_images(directory_to_create + "\\aligned", self.aligned_image)
+
+    def create_directories_if_absent(self, path):
+        if not os.path.exists(path):
+            os.mkdir(path)
+
+        if not os.path.exists(path + "\\reference"):
+            os.mkdir(path + "\\reference")
+
+        if not os.path.exists(path + "\\misaligned"):
+            os.mkdir(path + "\\misaligned")
+
+        if not os.path.exists(path + "\\aligned"):
+            os.mkdir(path + "\\aligned")
+
+    def write_numpy_images(self, path, np_array_path):
+        if os.path.exists(np_array_path):
+            np_array = np.load(np_array_path)
             if len(np_array.shape) == 4:
                 num_images = np_array.shape[3]
                 for i in range(num_images):
+                    filename = np_array_path[np_array_path.rfind('\\') + 1:len(np_array_path) - 4] + "_" + str(i)
                     image_array = np_array[0, :, :, i]
-                    ImageUtilities.write_image_from_array(
-                        path+"\\"+str(i)+".png", image_array)
+                    ImageUtilities.write_image_from_array(path + "\\" + filename + ".png", image_array)
             elif len(np_array.shape) == 3:
                 image_array = np_array[0, :, :]
-                ImageUtilities.write_image_from_array(
-                    path+"\\"+"1.png", image_array)
-        else:
-            print(array)
+                filename = np_array_path[np_array_path.rfind('\\') + 1:len(np_array_path) - 4]
+                ImageUtilities.write_image_from_array(path + "\\" + filename + ".png", image_array)
