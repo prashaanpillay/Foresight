@@ -17,7 +17,7 @@ class OnStartupCommand(Command):
         # TODO:find a way to skip commands but still having the config hydrated into the models at this point
 
         self.command_map.execute(AcquisitionCommand)
-        self.command_map.execute(PreprocessingCommand)
-        self.command_map.execute(TrainingCommand)
+        # self.command_map.execute(PreprocessingCommand)
+        # self.command_map.execute(TrainingCommand)
 
         logger.progress("Foresight Complete", heading=True)

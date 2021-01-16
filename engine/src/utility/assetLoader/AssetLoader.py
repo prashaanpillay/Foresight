@@ -1,4 +1,5 @@
 import glob2
+import pickle
 
 
 class AssetLoader:
@@ -35,6 +36,12 @@ class AssetLoader:
 
     def pop_config_asset(self, filename):
         return self.config.pop(filename)
+
+    def read_pickle(self, filename):
+        infile = open(filename, 'rb')
+        unpickled = pickle.load(infile)
+        infile.close()
+        return unpickled
 
     @staticmethod
     def __asset_name_to_string(file_path):
