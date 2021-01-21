@@ -1,16 +1,14 @@
-
 from ..PreprocessingCommand import PreprocessingCommand
 import cv2 as cv
-import ray
 
 
-@ray.remote
-class BlurCommand(PreprocessingCommand):
+class DenoiseCommand(PreprocessingCommand):
 
     def __init__(self):
         super().__init__()
 
     def execute(self, imagePath):
         super().execute(imagePath)
-        blurredImage = cv.blur(self.image, (5, 5))
+        print(imagePath)
+        blurredImage = cv.equalizeHist(self.image)
         cv.imwrite(imagePath, blurredImage)

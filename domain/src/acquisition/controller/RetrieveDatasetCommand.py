@@ -34,7 +34,8 @@ class RetrieveDatasetCommand(Command):
             candidate_model = CandidateModel()
             candidate_model.update(row[1]['survey_id'], self.get_path(row[1]['anchor_image_path']), row[1]['transform'], self.get_path(row[1]['ref_image_path']), self.get_path(row[1]['target_image_path']))
             candidate_training_models.append(candidate_model)
-            candidate_model.write_out(self.dataset_model.training_directory)
+            candidate_model.write_out_given(self.dataset_model.training_directory)
+            break
 
         validation_dataframe = pandas.read_pickle(self.raw_directory + self.dataset["validation_set_input_directory"])
 
@@ -42,7 +43,7 @@ class RetrieveDatasetCommand(Command):
             candidate_model = CandidateModel()
             candidate_model.update(row[1]['survey_id'], self.get_path(row[1]['anchor_image_path']), row[1]['transform'], self.get_path(row[1]['ref_image_path']), self.get_path(row[1]['target_image_path']))
             validation_training_models.append(candidate_model)
-            candidate_model.write_out(self.dataset_model.validation_directory)
+            candidate_model.write_out_given(self.dataset_model.validation_directory)
 
         self.dataset_model.set_training_dataset(candidate_training_models)
         self.dataset_model.set_validation_dataset(validation_training_models)
