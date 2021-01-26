@@ -1,12 +1,5 @@
 from engine.src.structure.model.Model import Model
 
-# model.fit(
-#         train_generator,
-#         steps_per_epoch=2000,
-#         epochs=50,
-#         validation_data=validation_generator,
-#         validation_steps=800)Z
-
 
 class DatasetModel(Model):
 
@@ -18,6 +11,16 @@ class DatasetModel(Model):
 
         self.training_dataset = None
         self.validation_dataset = None
+
+        self.preprocessing_color_map = {}
+        self.data_type = None
+    
+    def set_data_type(self, data_type):
+        self.data_type = data_type
+
+    # Over time this tracks what color space we are actually working with.
+    def set_preprocessing_color_map(self, preprocessing_technique, color=""):
+        self.training_directory = directory
 
     def set_training_directory(self, directory):
         self.training_directory = directory

@@ -14,7 +14,7 @@ class OnStartupCommand(Command):
         logger = self.injector.get_instance(Logger)
         logger.progress("Foresight Started", heading=True)
 
-        # TODO:find a way to skip commands but still having the config hydrated into the models at this point
+        # TODO: Find a way to skip commands but still having the config hydrated into the models at this point
 
         self.command_map.execute(AcquisitionCommand)
         self.command_map.execute(PreprocessingCommand)

@@ -25,28 +25,23 @@ class StartFittingCommand(Command):
         # TODO: move out
         self.model = Sequential()
 
-        self.model.add(Conv2D(16, kernel_size=(3, 3),
-                              activation='relu', padding="same", input_shape=self.training_model.input_shape))
+        self.model.add(Conv2D(16, kernel_size=(3, 3), activation='relu', padding="same", input_shape=self.training_model.input_shape))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
 
-        self.model.add(Conv2D(32, kernel_size=(3, 3),
-                              padding="same", activation='relu'))
+        self.model.add(Conv2D(32, kernel_size=(3, 3), padding="same", activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
 
         self.model.add(Dropout(0.2))
 
-        self.model.add(Conv2D(32, kernel_size=(3, 3),
-                              padding="same", activation='relu'))
+        self.model.add(Conv2D(32, kernel_size=(3, 3), padding="same", activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
 
         self.model.add(Dropout(0.1))
 
-        self.model.add(Conv2D(64, kernel_size=(3, 3),
-                              padding="same", activation='relu'))
+        self.model.add(Conv2D(64, kernel_size=(3, 3), padding="same", activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
 
-        self.model.add(Conv2D(128, kernel_size=(3, 3),
-                              padding="same", activation='relu'))
+        self.model.add(Conv2D(128, kernel_size=(3, 3), padding="same", activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
 
         self.model.add(Flatten())

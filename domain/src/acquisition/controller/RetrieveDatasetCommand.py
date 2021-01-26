@@ -17,18 +17,15 @@ class RetrieveDatasetCommand(Command):
         logger = self.injector.get_instance(Logger)
         dataset_model = self.injector.get_instance(DatasetModel)
         assetLoader = self.injector.get_instance(AssetLoader)
-        acquisition_config = JsonParser.decode(
-            assetLoader.get_config('acquisition.json'))
+        acquisition_config = JsonParser.decode(assetLoader.get_config('acquisition.json'))
 
         dataset = acquisition_config['dataset']
         dataset_url = dataset["download_url"]
 
         raw_directory = os.path.abspath("assets/raw_set/")
         build = acquisition_config['build']
-        training_directory = os.path.abspath(
-            build["training_set_output_directory"])
-        validation_directory = os.path.abspath(
-            build["validation_set_output_directory"])
+        training_directory = os.path.abspath(build["training_set_output_directory"])
+        validation_directory = os.path.abspath(build["validation_set_output_directory"])
 
         dataset_model.set_training_directory(training_directory)
         dataset_model.set_validation_directory(validation_directory)
@@ -43,31 +40,25 @@ class RetrieveDatasetCommand(Command):
             with zipfile.ZipFile(url_name, 'r') as zip_ref:
                 zip_ref.extractall(raw_directory)
 
-            shutil.copytree(
-                raw_directory+dataset["training_set_input_directory"], training_directory)
+            shutil.copytree(raw_directory+dataset["training_set_input_directory"], training_directory)
 
-            shutil.copytree(
-                raw_directory+dataset["validation_set_input_directory"], validation_directory)
+            shutil.copytree(raw_directory+dataset["validation_set_input_directory"], validation_directory)
 
             logger.progress("Dataset download complete")
 
         else:
             if os.path.exists(raw_directory):
                 if build["clear_out_folders_before_run"]:
-                    logger.warn(
-                        "Clearing out previous training and validation directories")
+                    logger.warn("Clearing out previous training and validation directories")
                     shutil.rmtree(training_directory)
                     shutil.rmtree(validation_directory)
 
-                shutil.copytree(
-                    raw_directory+dataset["training_set_input_directory"], training_directory)
-
-                shutil.copytree(
-                    raw_directory+dataset["validation_set_input_directory"], validation_directory)
-
+                shutil.copytree(raw_directory+dataset["training_set_input_directory"], training_directory)
+                shutil.copytree(raw_directory+dataset["validation_set_input_directory"], validation_directory)
                 logger.progress("Dataset download complete")
 
-        logger.log("Training set written to: " +
-                   str(dataset_model.training_directory))
-        logger.log("Validation set written to: " +
-                   str(dataset_model.validation_directory))
+        dataset_model.set_preprocessing_color_map("base", "rgb")
+        dataset_model.set_data_type(dataset["format"])        
+
+        logger.log("Training set written to: " + str(dataset_model.training_directory))
+        logger.log("Validation set written to: " + str(dataset_model.validation_directory))
